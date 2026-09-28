@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Welcome to Held Open</title>
+  <meta name="description" content="Pick a nickname, tap once for every door you hold for someone, and climb the live leaderboard.">
+  <meta name="theme-color" content="#15414b">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400..700&display=swap">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/guard.js" data-mode="welcome"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to sign up</a>
+
+  <header class="wrap topbar">
+    <a class="brand" href="/welcome.html" aria-label="Held Open">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path class="logo-frame" d="M5 29V11a11 11 0 0 1 22 0v18z"/>
+        <path class="logo-leaf" d="M5 29V11l12-5v25z"/>
+        <path class="logo-edge" d="M5 29V11a11 11 0 0 1 22 0v18"/>
+      </svg>
+      <span>Held Open</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="icon-btn" id="theme" type="button" aria-label="Switch theme" aria-pressed="false">
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="wrap welcome">
+    <div class="hero-copy">
+      <p class="eyebrow mono-label">A running tally of small courtesies</p>
+      <h1>Count every door you <em>hold</em>.</h1>
+      <p>Tap once each time you hold a door for someone. Your count is saved to your nickname, and everyone's totals update live on the leaderboard.</p>
+    </div>
+
+    <section class="door door-form" aria-label="Create your nickname">
+      <span class="hinge"></span><span class="hinge"></span><span class="hinge"></span>
+      <div class="door-body">
+        <div class="steps">
+          <span class="mono-label" id="step-label">Step 1 of 2</span>
+          <span class="bars" aria-hidden="true"><i class="on" id="bar-1"></i><i id="bar-2"></i></span>
+        </div>
+
+        <div id="view-nick">
+          <div class="form">
+            <h2 id="nick-title" tabindex="-1">Pick a nickname</h2>
+            <p class="lede">Everyone sees this name on the leaderboard. Use letters, numbers, spaces, dots, dashes or underscores.</p>
+            <form class="form" id="nick-form" novalidate>
+              <div class="field">
+                <label class="mono-label" for="nick">Nickname</label>
+                <input id="nick" name="nickname" type="text" maxlength="40" placeholder="Door Dasher" autocomplete="off" autocapitalize="words" spellcheck="false" aria-describedby="nick-status" required>
+                <p class="field-status" id="nick-status" aria-live="polite"></p>
+              </div>
+              <button class="btn btn-brass btn-block" id="nick-go" type="submit">Create my door</button>
+            </form>
+            <p class="switch">Already counting? <button class="linklike" id="to-signin" type="button">Sign in with your key</button></p>
+          </div>
+        </div>
+
+        <div id="view-key" hidden>
+          <div class="form">
+            <h2 id="key-title" tabindex="-1">Save your recovery key</h2>
+            <p class="lede">You are in, <strong id="key-nick"></strong>. This device stays signed in. To use your count on another phone or computer, sign in with your nickname and this key.</p>
+            <code class="keybox" id="key-code"></code>
+            <div class="key-actions">
+              <button class="btn btn-ghost btn-block" id="key-copy" type="button">Copy key</button>
+              <button class="btn btn-brass btn-block" id="key-enter" type="button">Go to my door</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-signin" hidden>
+          <div class="form">
+            <h2 id="signin-title" tabindex="-1">Welcome back</h2>
+            <p class="lede">Enter the nickname and recovery key from the device you signed up on.</p>
+            <form class="form" id="signin-form" novalidate>
+              <div class="field">
+                <label class="mono-label" for="si-nick">Nickname</label>
+                <input id="si-nick" name="nickname" type="text" maxlength="40" autocomplete="off" spellcheck="false" required>
+              </div>
+              <div class="field">
+                <label class="mono-label" for="si-code">Recovery key</label>
+                <input id="si-code" class="mono-input" name="code" type="text" maxlength="19" placeholder="XXXX-XXXX-XXXX-XXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="si-status" required>
+                <p class="field-status" id="si-status" aria-live="polite"></p>
+              </div>
+              <button class="btn btn-brass btn-block" id="si-go" type="submit">Sign in</button>
+            </form>
+            <p class="switch">New here? <button class="linklike" id="to-create" type="button">Create a nickname</button></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="proof" aria-label="Live activity">
+      <dl class="proof-stats">
+        <div><dt class="mono-label">Doors held today</dt><dd id="p-doors">–</dd></div>
+        <div><dt class="mono-label">People counting</dt><dd id="p-people">–</dd></div>
+        <div><dt class="mono-label">Here now</dt><dd id="p-online">–</dd></div>
+      </dl>
+      <ul class="ticker" id="ticker"></ul>
+    </div>
+  </main>
+
+  <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+  <script type="module" src="/js/welcome.js"></script>
+</body>
+</html>
