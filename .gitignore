@@ -1,0 +1,7 @@
+# Player data lives here at runtime. Never commit it.
+data/db.json
+data/db.json.tmp
+data/db.json.corrupt-*
+
+__pycache__/
+*.pyc
